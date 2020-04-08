@@ -299,6 +299,21 @@ const VideoLayout = {
     },
 
     /**
+     *
+     */
+    sortContainer() {
+
+        const $allRemoteVideos = $('#filmstripRemoteVideosContainer')
+            .children('span:visible')
+            .get();
+
+        $allRemoteVideos.sort((a, b) => (b.classList.contains('display-avatar-only') ? 0 : 1)
+                - (a.classList.contains('display-avatar-only') ? 0 : 1)
+        );
+        $('#filmstripRemoteVideosContainer').append($allRemoteVideos);
+    },
+
+    /**
      * Adds remote video container for the given id and <tt>SmallVideo</tt>.
      *
      * @param {string} the id of the video to add
@@ -316,6 +331,7 @@ const VideoLayout = {
 
         // Initialize the view
         remoteVideo.updateView();
+        this.sortContainer();
     },
 
     // FIXME: what does this do???
